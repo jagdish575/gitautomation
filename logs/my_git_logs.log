@@ -1,0 +1,15 @@
+from django import forms
+import requests
+
+class MyForm(forms.Form):
+    country = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Country'}))
+
+    def __init__(self, *args, **kwargs):
+        super(MyForm, self).__init__(*args, **kwargs)
+        self.fields['country'].choices = self.get_country_choices()
+
+    def get_country_choices(self):
+        response = requests.get('https://restcountries.com/v3.1/all')
+        countries = response.json()
+        choices = [(country['cca2'], country['name']['common']) for country in countries]
+        return choices
