@@ -1,7 +1,7 @@
 @echo off
 
 REM Change to your repository directory
-cd /d "C:\Users\jagdi\Videos\github automation"
+cd /d "C:\Users\jagdi\Videos\github automation\gitautomation\"
 
 REM Loop to create five commits
 for /l %%x in (1, 1, 5) do (
@@ -15,12 +15,10 @@ for /l %%x in (1, 1, 5) do (
     REM Commit the changes with a message, include the loop counter to differentiate each commit
     git commit -m "Daily update %%x: %date% %time%"
     
-    REM Push the changes to the remote repository
+    REM Push the changes to the remote repository after each commit
     git push origin main
 
     REM Optional delay to ensure unique timestamps (can be removed if not needed)
     timeout /t 1 >nul
 )
 
-REM Final push to ensure everything is up-to-date (optional)
-git push origin main
