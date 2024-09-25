@@ -1,2 +1,2 @@
-for _ in range(100):
-    print("jay shree ram")
+for i in range(1,10):
+    print("hellow")
